@@ -27,7 +27,9 @@ export default function CategoryList({
                             padding: 10,
                         }}>
 
-                        <Button  buttonColor={category == currentCategory ? theme?.colors.primary : "transparent"} textColor={category == currentCategory ? theme.colors.text : "white"}>{category}</Button>
+                        <Button onPress={
+                            () => onCategoryChange(category)
+                        }  buttonColor={category == currentCategory ? theme?.colors.primary : "transparent"} textColor={category == currentCategory ? theme.colors.text : "white"}>{category}</Button>
                         </View>
                     )
                 })

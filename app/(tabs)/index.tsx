@@ -10,10 +10,12 @@ import Spacer from "@/components/Spacer";
 import {Link} from "expo-router";
 import CardRow from "@/components/Home/CardRow";
 import CategoryList from "@/components/Home/CategoryList";
+import CategoryCol from "@/components/Home/CategoryCol";
 
 export default function TabOneScreen() {
   const [searchQuery, setSearchQuery] = React.useState('');
   const insets = useSafeAreaInsets();
+  const [currentCategory, setCurrentCategory] = React.useState("Business");
   const {
     colors: { background,text,primary},
   } = useAppTheme();
@@ -105,8 +107,23 @@ placeholderTextColor={text}
         }}>
       <CardRow/>
         </View>
+<View style={{
+    width: "90%",
+    flex: 0.1
+}}>
 
-<CategoryList/>
+<CategoryList
+currentCategory={currentCategory}
+onCategoryChange={setCurrentCategory}
+/>
+</View>
+        <View style={{
+            width: "90%",
+            flex: 0.5
+        }}>
+
+            <CategoryCol/></View>
+<Spacer size={20}/>
     </View>
       </SafeAreaProvider>
   );
