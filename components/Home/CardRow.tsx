@@ -18,14 +18,14 @@ export default function CardRow () {
 
         },
         slide: {
-            padding: 30,
-            width: DimensionsWindowWidth-70,
+            padding: 10,
+            width: DimensionsWindowWidth-40,
 
         },
         scrollView: {
 
             width: DimensionsWindowWidth,
-flex: 0.4
+
         },
     }
 
@@ -33,22 +33,26 @@ flex: 0.4
         {
             writer: "by Ryan Browne",
             title: "Crypto investors should be prepared to lose all their money, BOE governor says",
-            image: "https://picsum.photos/700"
+            image: "https://picsum.photos/700",
+            description: "The Bank of England governor said that cryptocurrencies are not a safe investment and that people should be prepared to lose all their money if they choose to invest in them."
         },
         {
             writer: "by Ryan Browne",
             title: "Crypto investors should be prepared to lose all their money, BOE governor says",
-            image: "https://picsum.photos/700"
+            image: "https://picsum.photos/700",
+            description: "The Bank of England governor said that cryptocurrencies are not a safe investment and that people should be prepared to lose all their money if they choose to invest in them."
         },
         {
             writer: "by Ryan Browne",
             title: "Crypto investors should be prepared to lose all their money, BOE governor says",
-            image: "https://picsum.photos/700"
+            image: "https://picsum.photos/700",
+            description: "The Bank of England governor said that cryptocurrencies are not a safe investment and that people should be prepared to lose all their money if they choose to invest in them."
         },
         {
             writer: "by Ryan Browne",
             title: "Crypto investors should be prepared to lose all their money, BOE governor says",
-            image: "https://picsum.photos/700"
+            image: "https://picsum.photos/700",
+            description: "The Bank of England governor said that cryptocurrencies are not a safe investment and that people should be prepared to lose all their money if they choose to invest in them."
         },
     ]
     return (
@@ -59,7 +63,8 @@ flex: 0.4
                         return (
                             <View style={styles.slide} key={index}>
                                 <Card style={{
-
+height: 250,
+                                    width: "100%",
                                     position: "relative"
                                 }}>
                                     <View style={{
@@ -73,9 +78,17 @@ flex: 0.4
                                         <Text style={styles.writer}>{news.writer}</Text>
                                         <Spacer size={20}/>
                                         <Text style={styles.title}>{news.title}</Text>
+                                        <Spacer size={30}/>
+<Text style={{
+    color: "white",
 
+}}>"{news?.description}"</Text>
                                     </View>
-                                    <Card.Cover source={{ uri: news.image }} />
+                                    <Card.Cover source={{ uri: news.image }} style={{
+                                        height: 250,
+                                        borderRadius: 10
+
+                                    }}/>
                                 </Card>
 
                             </View>

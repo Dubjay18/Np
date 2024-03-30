@@ -9,6 +9,7 @@ import {useAppTheme} from "@/app/_layout";
 import Spacer from "@/components/Spacer";
 import {Link} from "expo-router";
 import CardRow from "@/components/Home/CardRow";
+import CategoryList from "@/components/Home/CategoryList";
 
 export default function TabOneScreen() {
   const [searchQuery, setSearchQuery] = React.useState('');
@@ -33,7 +34,7 @@ export default function TabOneScreen() {
     },
     fab: {
       backgroundColor: primary,
-
+borderRadius: 1000,
     },
 
   });
@@ -97,9 +98,15 @@ placeholderTextColor={text}
         }}>See All</Text>
         </Link>
       </View>
+        <View
+        style={{
+          width: "90%",
+            flex: 0.4
+        }}>
       <CardRow/>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="app/(tabs)/index.tsx" />
+        </View>
+
+<CategoryList/>
     </View>
       </SafeAreaProvider>
   );
