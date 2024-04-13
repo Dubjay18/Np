@@ -1,8 +1,8 @@
-import { StyleSheet } from 'react-native';
+import {Button, StyleSheet} from 'react-native';
 
 import EditScreenInfo from '@/components/EditScreenInfo';
 import { Text, View } from '@/components/Themed';
-import React from "react";
+import React, {useCallback, useMemo, useRef} from "react";
 import {FAB, Searchbar} from "react-native-paper";
 import {SafeAreaProvider, useSafeAreaInsets} from "react-native-safe-area-context";
 import {useAppTheme} from "@/app/_layout";
@@ -11,9 +11,25 @@ import {Link} from "expo-router";
 import CardRow from "@/components/Home/CardRow";
 import CategoryList from "@/components/Home/CategoryList";
 import CategoryCol from "@/components/Home/CategoryCol";
+import FilterBottomSheet from "@/components/FilterBottomSheet";
+import {GestureHandlerRootView, NativeViewGestureHandler} from "react-native-gesture-handler";
+import {BottomSheetModal, BottomSheetModalProvider, BottomSheetView} from "@gorhom/bottom-sheet";
 
 export default function TabOneScreen() {
-  const [searchQuery, setSearchQuery] = React.useState('');
+    const bottomSheetModalRef = useRef<BottomSheetModal>(null);
+
+    // variables
+    const snapPoints = useMemo(() => ['25%', '50%'], []);
+
+    // callbacks
+    const handlePresentModalPress = useCallback(() => {
+        bottomSheetModalRef.current?.present();
+    }, []);
+    const handleSheetChanges = useCallback((index: number) => {
+        console.log('handleSheetChanges', index);
+    }, []);
+
+    const [searchQuery, setSearchQuery] = React.useState('');
   const insets = useSafeAreaInsets();
   const [currentCategory, setCurrentCategory] = React.useState("Business");
   const {
@@ -25,6 +41,16 @@ export default function TabOneScreen() {
       alignItems: 'center',
 
     },
+      sheet_container: {
+
+          padding: 24,
+          justifyContent: 'center',
+          backgroundColor: 'grey',
+      },
+      contentContainer: {
+          flex: 1,
+          alignItems: 'center',
+      },
     title: {
       fontSize: 24,
       fontWeight: 'bold',
@@ -42,13 +68,15 @@ borderRadius: 1000,
   });
   return (
       <SafeAreaProvider>
-    <View style={{
-      ...styles.container,
-      paddingTop: insets.top,
-      paddingBottom: insets.bottom,
-      paddingLeft: insets.left,
-      paddingRight: insets.right,
-    }}>
+
+
+            <View style={{
+                ...styles.container,
+                paddingTop: insets.top,
+                paddingBottom: insets.bottom,
+                paddingLeft: insets.left,
+                paddingRight: insets.right,
+            }}>
       <View style={{
         flexDirection: "row",
         gap: 10,
@@ -88,7 +116,6 @@ placeholderTextColor={text}
        width: "90%"
       }}>
 
-
       <Text style={styles.title}>Latest News</Text>
         <Link href={"/"}>
         <Text style={{
@@ -111,7 +138,7 @@ placeholderTextColor={text}
     width: "90%",
     flex: 0.1
 }}>
-
+    <FilterBottomSheet/>
 <CategoryList
 currentCategory={currentCategory}
 onCategoryChange={setCurrentCategory}
@@ -124,7 +151,9 @@ onCategoryChange={setCurrentCategory}
 
             <CategoryCol/></View>
 <Spacer size={20}/>
-    </View>
+            </View>
+
+
       </SafeAreaProvider>
   );
 }
