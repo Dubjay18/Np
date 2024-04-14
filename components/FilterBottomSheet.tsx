@@ -1,10 +1,11 @@
 import React, { useCallback, useMemo, useRef } from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import {
     BottomSheetModal,
     BottomSheetView,
     BottomSheetModalProvider,
 } from '@gorhom/bottom-sheet';
+import {Button} from "react-native-paper";
 
 const FilterBottomSheet = () => {
     // ref
@@ -28,9 +29,8 @@ const FilterBottomSheet = () => {
             <View style={styles.container}>
                 <Button
                     onPress={handlePresentModalPress}
-                    title="Present Modal"
-                    color="black"
-                />
+                   icon={"filter"}
+                >Filter</Button>
                 <BottomSheetModal
                     ref={bottomSheetModalRef}
                     index={1}
@@ -48,10 +48,6 @@ const FilterBottomSheet = () => {
 
 const styles = StyleSheet.create({
     container: {
-
-        padding: 24,
-        justifyContent: 'center',
-        backgroundColor: 'grey',
     },
     contentContainer: {
         flex: 1,

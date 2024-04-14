@@ -7,27 +7,14 @@ import {FAB, Searchbar} from "react-native-paper";
 import {SafeAreaProvider, useSafeAreaInsets} from "react-native-safe-area-context";
 import {useAppTheme} from "@/app/_layout";
 import Spacer from "@/components/Spacer";
-import {Link} from "expo-router";
+import {Link, useRouter} from "expo-router";
 import CardRow from "@/components/Home/CardRow";
 import CategoryList from "@/components/Home/CategoryList";
 import CategoryCol from "@/components/Home/CategoryCol";
-import FilterBottomSheet from "@/components/FilterBottomSheet";
-import {GestureHandlerRootView, NativeViewGestureHandler} from "react-native-gesture-handler";
-import {BottomSheetModal, BottomSheetModalProvider, BottomSheetView} from "@gorhom/bottom-sheet";
+
 
 export default function TabOneScreen() {
-    const bottomSheetModalRef = useRef<BottomSheetModal>(null);
-
-    // variables
-    const snapPoints = useMemo(() => ['25%', '50%'], []);
-
-    // callbacks
-    const handlePresentModalPress = useCallback(() => {
-        bottomSheetModalRef.current?.present();
-    }, []);
-    const handleSheetChanges = useCallback((index: number) => {
-        console.log('handleSheetChanges', index);
-    }, []);
+  const router = useRouter()
 
     const [searchQuery, setSearchQuery] = React.useState('');
   const insets = useSafeAreaInsets();
@@ -88,14 +75,22 @@ borderRadius: 1000,
           value={searchQuery}
 placeholderTextColor={text}
           iconColor={text}
-          inputStyle={{color: "#FFF"}}
+
+onEndEditing={() => {
+    console.log("search", searchQuery);
+    router.push(`/search?query=${searchQuery}`)
+}
+}
+
+    inputStyle={{color: "#FFF"}}
+
 
           style={{
             backgroundColor: background,
             opacity: 0.6,
-            color:"#F0F1FA",
+            color:"#FFF",
             borderStyle: 'solid',
-            borderColor:"#F0F1FA",
+            borderColor:primary,
             borderWidth: 0.5,
             flex: 0.9
           }}
@@ -138,7 +133,7 @@ placeholderTextColor={text}
     width: "90%",
     flex: 0.1
 }}>
-    <FilterBottomSheet/>
+
 <CategoryList
 currentCategory={currentCategory}
 onCategoryChange={setCurrentCategory}
