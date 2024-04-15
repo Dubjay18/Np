@@ -1,14 +1,17 @@
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import {DarkTheme, ThemeProvider} from '@react-navigation/native';
 import {useFonts} from 'expo-font';
-import {Stack} from 'expo-router';
+import {Stack, useRouter} from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import {useEffect} from 'react';
 
 import {useColorScheme} from '@/components/useColorScheme';
-import {DefaultTheme, PaperProvider, useTheme} from "react-native-paper";
+import {Appbar, DefaultTheme, PaperProvider, useTheme} from "react-native-paper";
 import {BottomSheetModalProvider} from "@gorhom/bottom-sheet";
 import {GestureHandlerRootView} from "react-native-gesture-handler";
+import {TouchableOpacity} from "react-native";
+import {Ionicons} from "@expo/vector-icons";
+import Colors from "@/constants/Colors";
 
 export {
     // Catch any errors thrown by the Layout component.
@@ -70,7 +73,8 @@ export const useAppTheme = () => useTheme<AppTheme>();
 
 function RootLayoutNav() {
     const colorScheme = useColorScheme();
-
+    const router = useRouter()
+    const {colors} = useAppTheme();
 
     return (
         <GestureHandlerRootView style={{
@@ -79,9 +83,25 @@ function RootLayoutNav() {
         }}>
             <BottomSheetModalProvider>
                 <PaperProvider theme={theme}>
-                    <Stack>
+                    <Stack
+                        screenOptions={{
+                            headerStyle: {
+                                backgroundColor: '#f4511e',
+                            },
+                            headerTintColor: '#fff',
+                            headerTitleStyle: {
+                                fontWeight: 'bold',
+                            },
+                        }}
+                    >
                         <Stack.Screen name="(tabs)" options={{headerShown: false}}/>
-                        <Stack.Screen name="search" options={{presentation: 'modal'}}/>
+                        <Stack.Screen name="search" options={{
+                            title: "",
+                            headerShown: false,
+                        }}
+                        />
+
+
                     </Stack>
                 </PaperProvider>
             </BottomSheetModalProvider>

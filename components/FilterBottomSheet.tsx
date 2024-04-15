@@ -125,6 +125,8 @@ const FilterBottomSheet = () => {
                                 })
                             }
                         </View>
+                        <Spacer size={20}/>
+                        <Button buttonColor={colors.primary} textColor={'white'}>Save</Button>
                     </View>
                 </BottomSheetView>
             </BottomSheetModal>
