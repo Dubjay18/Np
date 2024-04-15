@@ -26,6 +26,7 @@ export default function TabOneScreen() {
         container: {
             flex: 1,
             alignItems: 'center',
+            backgroundColor: background,
 
         },
         sheet_container: {
@@ -67,6 +68,7 @@ export default function TabOneScreen() {
                 <View style={{
                     flexDirection: "row",
                     gap: 10,
+                    backgroundColor: background,
                 }}>
 
                     <Searchbar
@@ -95,7 +97,9 @@ export default function TabOneScreen() {
                             flex: 0.9
                         }}
                     />
-                    <View>
+                    <View style={{
+                        backgroundColor: background,
+                    }}>
                         <FAB
                             icon="bell"
                             style={styles.fab}
@@ -108,7 +112,8 @@ export default function TabOneScreen() {
                     flexDirection: "row",
                     alignItems: "center",
                     justifyContent: "space-between",
-                    width: "90%"
+                    width: "90%",
+                    backgroundColor: background,
                 }}>
 
                     <Text style={styles.title}>Latest News</Text>
@@ -125,13 +130,15 @@ export default function TabOneScreen() {
                 <View
                     style={{
                         width: "90%",
-                        flex: 0.4
+                        flex: 0.4,
+                        backgroundColor: background,
                     }}>
                     <CardRow/>
                 </View>
                 <View style={{
                     width: "90%",
-                    flex: 0.1
+                    flex: 0.1,
+                    backgroundColor: background,
                 }}>
 
                     <CategoryList
@@ -141,7 +148,8 @@ export default function TabOneScreen() {
                 </View>
                 <View style={{
                     width: "90%",
-                    flex: 0.5
+                    flex: 0.5,
+                    backgroundColor: background,
                 }}>
 
                     <CategoryCol/></View>

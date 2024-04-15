@@ -9,7 +9,7 @@ import {useColorScheme} from '@/components/useColorScheme';
 import {Appbar, DefaultTheme, PaperProvider, useTheme} from "react-native-paper";
 import {BottomSheetModalProvider} from "@gorhom/bottom-sheet";
 import {GestureHandlerRootView} from "react-native-gesture-handler";
-import {TouchableOpacity} from "react-native";
+import {Image, TouchableOpacity, StyleSheet, View, ImageBackground} from "react-native";
 import {Ionicons} from "@expo/vector-icons";
 import Colors from "@/constants/Colors";
 
@@ -86,7 +86,7 @@ function RootLayoutNav() {
                     <Stack
                         screenOptions={{
                             headerStyle: {
-                                backgroundColor: '#f4511e',
+                                backgroundColor: colors.background,
                             },
                             headerTintColor: '#fff',
                             headerTitleStyle: {
@@ -100,8 +100,41 @@ function RootLayoutNav() {
                             headerShown: false,
                         }}
                         />
+                        <Stack.Screen name={"[newsId]"} options={{
+                            title: "",
+                            headerStyle: {
+                                backgroundColor: 'transparent',
+
+                            },
+                            header: () =>
+                                (
+                                    <View style={{height: 400}}>
+                                        <ImageBackground source={require("../assets/images/bg-pic.png")}
+                                                         resizeMode="cover" style={{
+
+                                            width: "100%",
+                                            height: "100%",
+
+                                        }}>
+                                            <View style={{
+                                                backgroundColor: "rgba(245, 245, 245, 0.5)",
+                                                padding: 10,
+                                                position: 'absolute', left: 30, top: 40,
+                                                borderRadius: 10,
+                                            }}>
+
+                                                <Ionicons name={"chevron-back"} size={24} color={colors.text}
+
+                                                          onPress={() => router.back()}/>
+                                            </View>
+                                        </ImageBackground>
 
 
+                                    </View>
+                                ),
+
+                        }}
+                        />
                     </Stack>
                 </PaperProvider>
             </BottomSheetModalProvider>
