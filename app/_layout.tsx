@@ -111,17 +111,20 @@ function RootLayoutNav() {
                                 (
                                     <View style={{height: 400}}>
 
-                                        <View style={{
-                                            backgroundColor: "rgba(245, 245, 245, 0.5)",
-                                            padding: 10,
-                                            position: 'absolute', left: 30, top: 40,
-                                            borderRadius: 10,
-                                        }}>
+                                        <TouchableOpacity
+                                            onPress={() => router.back()}
+                                            style={{
+                                                backgroundColor: "rgba(245, 245, 245, 0.5)",
+                                                padding: 10,
+                                                position: 'absolute', left: 30, top: 40,
+                                                borderRadius: 10,
+
+                                            }}>
 
                                             <Ionicons name={"chevron-back"} size={24} color={colors.text}
 
-                                                      onPress={() => router.back()}/>
-                                        </View>
+                                            />
+                                        </TouchableOpacity>
 
 
                                     </View>
