@@ -102,6 +102,7 @@ function RootLayoutNav() {
                         />
                         <Stack.Screen name={"[newsId]"} options={{
                             title: "",
+                            headerTransparent: true,
                             headerStyle: {
                                 backgroundColor: 'transparent',
 
@@ -109,25 +110,18 @@ function RootLayoutNav() {
                             header: () =>
                                 (
                                     <View style={{height: 400}}>
-                                        <ImageBackground source={require("../assets/images/bg-pic.png")}
-                                                         resizeMode="cover" style={{
 
-                                            width: "100%",
-                                            height: "100%",
-
+                                        <View style={{
+                                            backgroundColor: "rgba(245, 245, 245, 0.5)",
+                                            padding: 10,
+                                            position: 'absolute', left: 30, top: 40,
+                                            borderRadius: 10,
                                         }}>
-                                            <View style={{
-                                                backgroundColor: "rgba(245, 245, 245, 0.5)",
-                                                padding: 10,
-                                                position: 'absolute', left: 30, top: 40,
-                                                borderRadius: 10,
-                                            }}>
 
-                                                <Ionicons name={"chevron-back"} size={24} color={colors.text}
+                                            <Ionicons name={"chevron-back"} size={24} color={colors.text}
 
-                                                          onPress={() => router.back()}/>
-                                            </View>
-                                        </ImageBackground>
+                                                      onPress={() => router.back()}/>
+                                        </View>
 
 
                                     </View>
